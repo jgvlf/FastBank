@@ -1,0 +1,77 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.profiles.windows":{
+        "MyGit":{
+            "source": "Git Bash",
+            "icon": "github",
+            "color": "terminal.ansiRed"
+        },
+        "Package Installer":{
+            "source": "PowerShell",
+            "icon": "package",
+            "color": "terminal.ansiGreen"
+        },
+        "Server":{
+            "source": "PowerShell",
+            "icon": "server",
+            "color": "terminal.ansiBlue"
+        },
+    },
+	"restoreTerminals.terminals": [
+		{
+			"profile": "MyGit",
+			"splitTerminals":[
+				{
+					"name": "Git",
+				},
+
+			]
+		},
+		{
+			"profile": "Package Installer",
+			"splitTerminals": [
+				{
+					"name": "Generic"
+				},
+			]
+		},
+		{
+			"profile": "Package Installer",
+			"splitTerminals": [
+				{
+					"name": "Django"
+				},
+			]
+		},
+		{
+			"profile": "Package Installer",
+			"splitTerminals": [
+				{
+					"name": "Node"
+				},
+			]
+		},
+		{
+			"profile": "Server",
+			"splitTerminals": [
+				{
+					"name": "Django"
+				},
+			]
+		},
+		{
+			"profile": "Server",
+			"splitTerminals": [
+				{
+					"name": "Node"
+				},
+			]
+		},
+	]
+}
+}
