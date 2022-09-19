@@ -34,6 +34,17 @@ class Conta(models.Model):
     agency = models.CharField(max_length = 255)
     account_number = models.CharField(max_length = 255)
     verify_digit = models.CharField(max_length = 1)
+    money = models.DecimalField(max_digits=9, decimal_places=2)
+    BRONZE = "Bronze"
+    SILVER = "Prata"
+    GOLD = "Ouro"
+    DIAMOND = "Diamante"
+    CLASS_ACCOUNT = [
+        (BRONZE, "B"),
+        (SILVER, "S"),
+        (GOLD, "G"),
+        (DIAMOND, "D"),
+    ]
     CORRENT_ACCOUNT = "Conta Corrente"
     ESSENTIAL_ACCOUNT = "Conta Essencial"
     SAVINGS_ACCOUNT = "Conta Poupança"
@@ -47,7 +58,7 @@ class Conta(models.Model):
     
     class Meta:
         verbose_name_plural = "Contas"
-        
+
 
 class Emprestimo(models.Model):
     class Meta:
