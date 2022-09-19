@@ -59,3 +59,41 @@ class Beneficio(models.Model):
     class Meta:
         verbose_name_plural = "Beneficios"
     
+class Cliente(models.Model):
+    first_name = models.CharField(max_length = 255)
+    last_name = models.CharField(max_length = 255)
+    age = models.PositiveSmallIntegerField(max_length = 3)
+    email = models.EmailField(max_length = 255, unique = True)
+    MALE = "Masculino"
+    FEMALE = "Feminino"
+    OTHERS = "Outros"
+    SEX_CHOICES = [
+      (MALE, "F"),
+      (FEMALE, "F"),
+      (OTHERS, "O"),
+    ]
+    
+    sex_choice = models.CharField(max_length=9, choices=SEX_CHOICES, default=1)
+    
+    user = models.ForeignKey(
+        Usuario,
+        on_delete = models.CASCADE  
+    )
+    
+    address = models.ForeignKey(
+        Endereco,
+        on_delete = models.CASCADE
+    )
+    
+    account = models.ForeignKey(
+        Conta,
+        on_delete = models.CASCADE
+    )
+    
+    def __str__(self):
+        return f"{self.last_name} {self.first_name}"
+    
+
+    class Meta:
+        verbose_name_plural = "Clientes"
+    
