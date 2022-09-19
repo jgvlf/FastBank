@@ -29,7 +29,7 @@ class Endereco(models.Model):
     class Meta:
         verbose_name_plural = "Enderecos"
         
-        
+
 class Conta(models.Model):
     agency = models.CharField(max_length = 255)
     account_number = models.CharField(max_length = 255)
@@ -79,6 +79,7 @@ class Transferencia(models.Model):
         on_delete=models.PROTECT
     )
     
+    
     class Meta:
         verbose_name_plural = "Transferencias"
         
@@ -115,6 +116,8 @@ class Emprestimo(models.Model):
     
     class Meta:
         verbose_name_plural = "Emprestimos"
+        
+
 class PGTO_Emprestimo(models.Model):
     date_payment = models.DateField(null=True)
     loan = models.ForeignKey(
@@ -122,12 +125,18 @@ class PGTO_Emprestimo(models.Model):
         on_delete = models.PROTECT
     )
     
+    
     class Meta:
         verbose_name_plural = "PGTOS_Emprestimos"
+         
+        
 class Beneficio(models.Model):
+    
+    
     class Meta:
         verbose_name_plural = "Beneficios"
-    
+
+ 
 class Cliente(models.Model):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
@@ -165,6 +174,7 @@ class Cliente(models.Model):
     
     class Meta:
         verbose_name_plural = "Clientes"
+  
     
 class Cartao(models.Model):
     number = models.CharField(max_length= 255)
@@ -174,6 +184,8 @@ class Cartao(models.Model):
         Cliente,
         on_delete = models.PROTECT
     )
+    
+    
     class Meta:
         verbose_name_plural = "Cartoes"
     
@@ -197,6 +209,7 @@ class Fatura(models.Model):
         Cartao,
         on_delete = models.PROTECT
     )
+    
     
     class Meta:
         verbose_name_plural = "Faturas"
