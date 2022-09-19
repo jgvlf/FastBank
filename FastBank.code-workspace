@@ -36,23 +36,23 @@
 			"profile": "Package Installer",
 			"splitTerminals": [
 				{
-					"name": "Generic"
-				},
-			]
-		},
-		{
-			"profile": "Package Installer",
-			"splitTerminals": [
-				{
-					"name": "Django"
-				},
-			]
-		},
-		{
-			"profile": "Package Installer",
-			"splitTerminals": [
-				{
 					"name": "Node"
+				},
+			]
+		},
+		{
+			"profile": "Package Installer",
+			"splitTerminals": [
+				{
+					"name": "Python"
+				},
+			]
+		},
+		{
+			"profile": "Server",
+			"splitTerminals": [
+				{
+					"name": "React"
 				},
 			]
 		},
@@ -61,14 +61,6 @@
 			"splitTerminals": [
 				{
 					"name": "Django"
-				},
-			]
-		},
-		{
-			"profile": "Server",
-			"splitTerminals": [
-				{
-					"name": "Node"
 				},
 			]
 		},
