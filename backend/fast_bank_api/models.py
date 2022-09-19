@@ -97,3 +97,14 @@ class Cliente(models.Model):
     class Meta:
         verbose_name_plural = "Clientes"
     
+class Cartao(models.Model):
+    number = models.CharField(max_length= 255)
+    security_number = models.CharField(max_length= 255)
+    validate_date = models.CharField(max_length= 5)
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+    class Meta:
+        verbose_name_plural = "Cartoes"
+    
