@@ -59,6 +59,29 @@ class Conta(models.Model):
     class Meta:
         verbose_name_plural = "Contas"
 
+        
+class Transferencia(models.Model):
+    transfer_date = models.DateField()
+    DEPOSIT = "Depositar"
+    WITHDRAW = "Sacar"
+    OPERATION_TYPE = [
+        (DEPOSIT, "D"),
+        (WITHDRAW, "W"),
+    ]
+    operation_type = models.CharField(max_length = 9, choices = OPERATION_TYPE, default = DEPOSIT)
+    value = models.DecimalField(max_digits = 9, decimal_places = 2)
+    sending_account = models.ForeignKey(
+        Conta,
+        on_delete=models.PROTECT
+    )
+    recive_account = models.ForeignKey(
+        Conta,
+        on_delete=models.PROTECT
+    )
+    
+    class Meta:
+        verbose_name_plural = "Transferencias"
+        
 
 class Emprestimo(models.Model):
     class Meta:
