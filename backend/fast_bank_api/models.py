@@ -137,12 +137,12 @@ class Cliente(models.Model):
     FEMALE = "Feminino"
     OTHERS = "Outros"
     SEX_CHOICES = [
-      (MALE, "F"),
+      (MALE, "M"),
       (FEMALE, "F"),
       (OTHERS, "O"),
     ]
     
-    sex_choice = models.CharField(max_length=9, choices=SEX_CHOICES, default=1)
+    sex_choice = models.CharField(max_length=9, choices = SEX_CHOICES, default = MALE)
     
     user = models.ForeignKey(
         Usuario,
