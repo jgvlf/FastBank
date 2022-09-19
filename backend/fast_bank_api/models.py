@@ -108,3 +108,22 @@ class Cartao(models.Model):
     class Meta:
         verbose_name_plural = "Cartoes"
     
+
+class Fatura(models.Model):
+    emission_date = models.DateTimeField()
+    validate_date = models.DateTimeField()
+    value = models.DecimalField(max_digits = 7, decimal_places = 2)
+    STATUS_TYPE = [
+        ("Aguardando Pagamento", "AP"),
+        ("Analisando Pagamento", "AP"),
+        ("Pagamento Aprovado", "PA"),
+        ("Pagamento Recusado", "PR"),
+    ]
+    status = models.CharField(max_length = 20, choices = STATUS_TYPE, default = 1)
+    card = models.ForeignKey(
+        Cartao,
+        on_delete = models.PROTECT
+    )
+    
+    class Meta:
+        verbose_name_plural = "Faturas"
