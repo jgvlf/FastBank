@@ -28,7 +28,7 @@ class Endereco(models.Model):
     
     class Meta:
         verbose_name_plural = "Enderecos"
-
+        
         
 class Conta(models.Model):
     agency = models.CharField(max_length = 255)
@@ -93,7 +93,7 @@ class Cliente(models.Model):
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
     
-
+    
     class Meta:
         verbose_name_plural = "Clientes"
     
@@ -108,7 +108,7 @@ class Cartao(models.Model):
     class Meta:
         verbose_name_plural = "Cartoes"
     
-
+    
 class Fatura(models.Model):
     emission_date = models.DateTimeField()
     validate_date = models.DateTimeField()
