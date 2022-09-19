@@ -181,14 +181,18 @@ class Cartao(models.Model):
 class Fatura(models.Model):
     emission_date = models.DateTimeField()
     validate_date = models.DateTimeField()
-    value = models.DecimalField(max_digits = 7, decimal_places = 2)
+    value = models.DecimalField(max_digits = 9, decimal_places = 2)
+    WAIT_PAYMENT = "Aguardando Pagamento"
+    ANALYSING_PAYMENT = "Analisando Pagamento"
+    ALLOW_PAYMENT = "Pagamento Aprovado"
+    DENY_PAYMENT = "Pagamento Recusado"
     STATUS_TYPE = [
-        ("Aguardando Pagamento", "AP"),
-        ("Analisando Pagamento", "AP"),
-        ("Pagamento Aprovado", "PA"),
-        ("Pagamento Recusado", "PR"),
+        (WAIT_PAYMENT, "AGP"),
+        (ANALYSING_PAYMENT, "ANP"),
+        (ALLOW_PAYMENT, "PA"),
+        (DENY_PAYMENT, "PR"),
     ]
-    status = models.CharField(max_length = 20, choices = STATUS_TYPE, default = 1)
+    status = models.CharField(max_length = 20, choices = STATUS_TYPE, default = WAIT_PAYMENT)
     card = models.ForeignKey(
         Cartao,
         on_delete = models.PROTECT
