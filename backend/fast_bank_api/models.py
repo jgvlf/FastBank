@@ -28,3 +28,24 @@ class Endereco(models.Model):
     
     class Meta:
         verbose_name_plural = "Enderecos"
+
+        
+class Conta(models.Model):
+    agency = models.CharField(max_length = 255)
+    account_number = models.CharField(max_length = 255)
+    verify_digit = models.CharField(max_length = 1)
+    CORRENT_ACCOUNT = "Conta Corrente"
+    ESSENTIAL_ACCOUNT = "Conta Essencial"
+    SAVINGS_ACCOUNT = "Conta Poupança"
+    ACCOUNT_TYPE = [
+        (CORRENT_ACCOUNT, "CC"),
+        (ESSENTIAL_ACCOUNT, "CE"),
+        (SAVINGS_ACCOUNT, "CP"),
+    ]
+    account_type = models.CharField(max_length=15, choices=ACCOUNT_TYPE, default=1)
+    
+    
+    class Meta:
+        verbose_name_plural = "Contas"
+        
+
