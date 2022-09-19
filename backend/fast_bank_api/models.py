@@ -52,3 +52,6 @@ class Conta(models.Model):
 class Emprestimo(models.Model):
     class Meta:
         verbose_name_plural = "Emprestimos"
+class PGTO_Emprestimo(models.Model):
+    class Meta:
+        verbose_name_plural = "PGTOS_Emprestimos"
