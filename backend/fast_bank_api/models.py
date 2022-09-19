@@ -116,6 +116,12 @@ class Emprestimo(models.Model):
     class Meta:
         verbose_name_plural = "Emprestimos"
 class PGTO_Emprestimo(models.Model):
+    date_payment = models.DateField(null=True)
+    loan = models.ForeignKey(
+        Emprestimo,
+        on_delete = models.PROTECT
+    )
+    
     class Meta:
         verbose_name_plural = "PGTOS_Emprestimos"
 class Beneficio(models.Model):
