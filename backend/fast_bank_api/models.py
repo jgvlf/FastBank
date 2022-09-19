@@ -84,6 +84,35 @@ class Transferencia(models.Model):
         
 
 class Emprestimo(models.Model):
+    loan_date = models.DateField()
+    loan_first_installment_date = models.DateField()
+    loan_value = models.DecimalField(max_digits = 9, decimal_places = 2)
+    number_installment = models.PositiveBigIntegerField(max_length = 3)
+    number_pay_installment = models.PositiveBigIntegerField(max_length = 3)
+    fees = models.DecimalField(max_digits=5, decimal_places=2)
+    
+    def calc_loan_payment(self):
+        value = self.loan_value
+        installment = self.number_installment
+        fees_decimal = self.fees/100
+        value_payment = (value/installment)*fees_decimal
+        return value_payment
+
+    loan_value_payment = calc_loan_payment()
+    
+    total_value = loan_value_payment*number_pay_installment
+    
+    ANALYSING = "Analisando"
+    ALLOW = "Aprovado"
+    DENY = "Recusado"
+    LOAN_STATUS = [
+        (ANALYSING, "AN"),
+        (ALLOW, "A"),
+        (DENY, "R"),
+    ]
+    loan_status = models.CharField(max_length = 10, choices = LOAN_STATUS, default = ANALYSING)
+    
+    
     class Meta:
         verbose_name_plural = "Emprestimos"
 class PGTO_Emprestimo(models.Model):
