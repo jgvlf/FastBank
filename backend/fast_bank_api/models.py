@@ -49,3 +49,6 @@ class Conta(models.Model):
         verbose_name_plural = "Contas"
         
 
+class Emprestimo(models.Model):
+    class Meta:
+        verbose_name_plural = "Emprestimos"
