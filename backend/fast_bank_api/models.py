@@ -92,7 +92,6 @@ class Transferencia(models.Model):
 
 class Emprestimo(models.Model):
     loan_date = models.DateField()
-    loan_first_installment_date = models.DateField()
     loan_value = models.DecimalField(max_digits = 9, decimal_places = 2)
     number_installment = models.PositiveBigIntegerField(max_length = 3)
     number_pay_installment = models.PositiveBigIntegerField(max_length = 3)
