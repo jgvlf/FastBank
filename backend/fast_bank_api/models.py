@@ -32,7 +32,7 @@ class Endereco(models.Model):
 
 class Conta(models.Model):
     agency = models.CharField(max_length = 255)
-    account_number = models.CharField(max_length = 255)
+    account_number = models.CharField(max_length = 255, unique=True)
     verify_digit = models.CharField(max_length = 1)
     money = models.DecimalField(max_digits=9, decimal_places=2)
     BRONZE = "Bronze"
