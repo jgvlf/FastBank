@@ -78,8 +78,18 @@ class PlanoSaudeSerializer(serializers.Serializer):
     class Meta:
         model = PlanoSaude
         field = ['id', 'installment_value', 'plan_type', 
-                 'installment_date', 'health_plan']
-        
+                 'installment_date', 'pay_installment_date', 'health_plan']
+    
+    pay_installment_date = serializers.SerializerMethodField(method_name='verify_type_plan')
+
+    def verify_type_plan(self):
+        if self.plan_type == "M":
+            months = self.installment_date.month
+            return months+1
+        if self.plan_type == "A":
+            years = self.installment_date.year
+            return years+1
+    
         
 class ValeRefeicaoSerializer(serializers.Serializer):
     
