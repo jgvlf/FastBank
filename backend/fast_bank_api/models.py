@@ -146,6 +146,7 @@ class PlanoSaude(models.Model):
     ]
     plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
     installment_date = models.DateField()
+    pay_installment_date = models.DateField()
     health_plan = models.CharField(default="UNIMED")
     
     
