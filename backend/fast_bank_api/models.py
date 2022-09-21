@@ -40,20 +40,21 @@ class Conta(models.Model):
     GOLD = "Ouro"
     DIAMOND = "Diamante"
     CLASS_ACCOUNT = [
-        (BRONZE, "B"),
-        (SILVER, "S"),
-        (GOLD, "G"),
-        (DIAMOND, "D"),
+        ("B", BRONZE),
+        ("S", SILVER),
+        ("G", GOLD),
+        ("D", DIAMOND),
     ]
     CORRENT_ACCOUNT = "Conta Corrente"
     ESSENTIAL_ACCOUNT = "Conta Essencial"
     SAVINGS_ACCOUNT = "Conta Poupança"
     ACCOUNT_TYPE = [
-        (CORRENT_ACCOUNT, "CC"),
-        (ESSENTIAL_ACCOUNT, "CE"),
-        (SAVINGS_ACCOUNT, "CP"),
+        ("CC", CORRENT_ACCOUNT),
+        ("CE", ESSENTIAL_ACCOUNT),
+        ("CP", SAVINGS_ACCOUNT),
     ]
-    account_type = models.CharField(max_length=15, choices=ACCOUNT_TYPE, default=1)
+    class_account = models.CharField(max_length = 1, choices = CLASS_ACCOUNT, default = BRONZE)
+    account_type = models.CharField(max_length = 2, choices = ACCOUNT_TYPE, default = CORRENT_ACCOUNT)
     
     
     class Meta:
@@ -65,10 +66,10 @@ class Transferencia(models.Model):
     DEPOSIT = "Depositar"
     WITHDRAW = "Sacar"
     OPERATION_TYPE = [
-        (DEPOSIT, "D"),
-        (WITHDRAW, "W"),
+        ("D", DEPOSIT),
+        ("W", WITHDRAW),
     ]
-    operation_type = models.CharField(max_length = 9, choices = OPERATION_TYPE, default = DEPOSIT)
+    operation_type = models.CharField(max_length = 1, choices = OPERATION_TYPE, default = DEPOSIT)
     value = models.DecimalField(max_digits = 9, decimal_places = 2)
     sending_account = models.ForeignKey(
         Conta,
@@ -107,11 +108,11 @@ class Emprestimo(models.Model):
     ALLOW = "Aprovado"
     DENY = "Recusado"
     LOAN_STATUS = [
-        (ANALYSING, "AN"),
-        (ALLOW, "A"),
-        (DENY, "R"),
+        ("AN", ANALYSING),
+        ("A", ALLOW),
+        ("R", DENY),
     ]
-    loan_status = models.CharField(max_length = 10, choices = LOAN_STATUS, default = ANALYSING)
+    loan_status = models.CharField(max_length = 2, choices = LOAN_STATUS, default = ANALYSING)
     
     
     class Meta:
@@ -146,12 +147,12 @@ class Cliente(models.Model):
     FEMALE = "Feminino"
     OTHERS = "Outros"
     SEX_CHOICES = [
-      (MALE, "M"),
-      (FEMALE, "F"),
-      (OTHERS, "O"),
+      ("M", MALE),
+      ("F", FEMALE),
+      ("O", OTHERS),
     ]
     
-    sex_choice = models.CharField(max_length=9, choices = SEX_CHOICES, default = MALE)
+    sex_choice = models.CharField(max_length = 1, choices = SEX_CHOICES, default = MALE)
     
     user = models.ForeignKey(
         Usuario,
@@ -199,12 +200,12 @@ class Fatura(models.Model):
     ALLOW_PAYMENT = "Pagamento Aprovado"
     DENY_PAYMENT = "Pagamento Recusado"
     STATUS_TYPE = [
-        (WAIT_PAYMENT, "AGP"),
-        (ANALYSING_PAYMENT, "ANP"),
-        (ALLOW_PAYMENT, "PA"),
-        (DENY_PAYMENT, "PR"),
+        ("AGP", WAIT_PAYMENT),
+        ("ANP", ANALYSING_PAYMENT),
+        ("PA", ALLOW_PAYMENT),
+        ("PR", DENY_PAYMENT),
     ]
-    status = models.CharField(max_length = 20, choices = STATUS_TYPE, default = WAIT_PAYMENT)
+    status = models.CharField(max_length = 3, choices = STATUS_TYPE, default = WAIT_PAYMENT)
     card = models.ForeignKey(
         Cartao,
         on_delete = models.PROTECT
