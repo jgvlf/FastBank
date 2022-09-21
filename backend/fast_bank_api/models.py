@@ -127,15 +127,49 @@ class PGTO_Emprestimo(models.Model):
     
     class Meta:
         verbose_name_plural = "PGTOS_Emprestimos"
-         
-        
-class Beneficio(models.Model):
+
+
+class SemBeneficio(models.Model):
+    descricao = models.CharField(default="Sem Benefícios Atribuidos")
     
     
     class Meta:
-        verbose_name_plural = "Beneficios"
+        verbose_name_plural = "SemBeneficios"
 
- 
+
+class PlanoSaude(models.Model):
+    installment_value = models.DecimalField(max_digits = 6, decimal_places= 2)
+    ANNUAL = "Anual"
+    MONTHLY = "MONTHLY"
+    PLAN_TYPE = [
+        ("M", MONTHLY),
+        ("A", ANNUAL),
+    ]
+    plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
+    installment_date = models.DateField()
+    health_plan = models.CharField(default="UNIMED")
+    
+    
+    class Meta:
+        verbose_name_plural = "PlanoSaude"
+
+
+class ValeRefeicao(models.Model):
+    value = models.DecimalField()
+    
+    
+    class Meta:
+        verbose_name_plural = "ValeRefeicoes"
+
+
+class ValeAlimentacao(models.Model):
+    value = models.DecimalField()
+
+
+class Meta:
+        verbose_name_plural = "ValeAlimentacoes"
+      
+      
 class Cliente(models.Model):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
@@ -173,8 +207,31 @@ class Cliente(models.Model):
     
     class Meta:
         verbose_name_plural = "Clientes"
-  
     
+    
+class Beneficio(models.Model):
+    NO_BENEFIT = "Sem Benefício"
+    HEALTH_PLAN = "Plano de Saúde"
+    LUNCHEON_VOUCHER = "Vale Refeição"
+    FOOD_VOUCHER = "Vale Alimentação"
+    BENEFIT_TYPE=[
+        ("SB", NO_BENEFIT),
+        ("PS", HEALTH_PLAN),
+        ("VR", LUNCHEON_VOUCHER),
+        ("VA", FOOD_VOUCHER),
+    ]
+    nome = models.CharField(max_length=2, choices = BENEFIT_TYPE, default = NO_BENEFIT)
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+
+    
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name_plural = "Beneficios"
 class Cartao(models.Model):
     number = models.CharField(max_length= 255)
     security_number = models.CharField(max_length= 255)
