@@ -56,11 +56,13 @@ class Conta(models.Model):
     class_account = models.CharField(max_length = 1, choices = CLASS_ACCOUNT, default = BRONZE)
     account_type = models.CharField(max_length = 2, choices = ACCOUNT_TYPE, default = CORRENT_ACCOUNT)
     
+    def __str__(self):
+        return f"{self.agency} {self.account_number}-{self.verify_digit}"
     
     class Meta:
         verbose_name_plural = "Contas"
+    
 
-        
 class Transferencia(models.Model):
     transfer_date = models.DateField()
     DEPOSIT = "Depositar"
@@ -80,9 +82,12 @@ class Transferencia(models.Model):
         on_delete=models.PROTECT
     )
     
+    def __str__(self):
+        return self.operation_type
     
     class Meta:
         verbose_name_plural = "Transferencias"
+    
         
 
 class Emprestimo(models.Model):
@@ -92,18 +97,7 @@ class Emprestimo(models.Model):
     number_installment = models.PositiveBigIntegerField(max_length = 3)
     number_pay_installment = models.PositiveBigIntegerField(max_length = 3)
     fees = models.DecimalField(max_digits=5, decimal_places=2)
-    
-    def calc_loan_payment(self):
-        value = self.loan_value
-        installment = self.number_installment
-        fees_decimal = self.fees/100
-        value_payment = (value/installment)*fees_decimal
-        return value_payment
 
-    loan_value_payment = calc_loan_payment()
-    
-    total_value = loan_value_payment*number_pay_installment
-    
     ANALYSING = "Analisando"
     ALLOW = "Aprovado"
     DENY = "Recusado"
@@ -113,10 +107,12 @@ class Emprestimo(models.Model):
         ("R", DENY),
     ]
     loan_status = models.CharField(max_length = 2, choices = LOAN_STATUS, default = ANALYSING)
-    
-    
+
+    def __str__(self):
+        return self.loan_date
     class Meta:
         verbose_name_plural = "Emprestimos"
+    
         
 
 class PGTO_Emprestimo(models.Model):
@@ -126,6 +122,8 @@ class PGTO_Emprestimo(models.Model):
         on_delete = models.PROTECT
     )
     
+    def __str__(self):
+        return self.date_payment
     
     class Meta:
         verbose_name_plural = "PGTOS_Emprestimos"
@@ -210,6 +208,9 @@ class Fatura(models.Model):
         Cartao,
         on_delete = models.PROTECT
     )
+    
+    def __str__(self):
+        return self.emission_date
     
     
     class Meta:
