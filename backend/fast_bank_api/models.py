@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Usuario(models.Model):
     cpf = models.CharField(max_length = 11, unique=True)
-    password = models.CharField()
+    password = models.CharField(max_length=30)
     
     def __str__(self):
         return self.cpf
@@ -75,11 +75,13 @@ class Transferencia(models.Model):
     value = models.DecimalField(max_digits = 9, decimal_places = 2)
     sending_account = models.ForeignKey(
         Conta,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        related_name ="conta_dinheiro_enviada"
     )
     recive_account = models.ForeignKey(
         Conta,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        related_name = "conta_dinheiro_recebido"
     )
     
     def __str__(self):
@@ -93,8 +95,8 @@ class Transferencia(models.Model):
 class Emprestimo(models.Model):
     loan_date = models.DateField()
     loan_value = models.DecimalField(max_digits = 9, decimal_places = 2)
-    number_installment = models.PositiveBigIntegerField(max_length = 3)
-    number_pay_installment = models.PositiveBigIntegerField(max_length = 3)
+    number_installment = models.PositiveIntegerField()
+    number_pay_installment = models.PositiveIntegerField()
     fees = models.DecimalField(max_digits=5, decimal_places=2)
 
     ANALYSING = "Analisando"
@@ -129,7 +131,7 @@ class PGTO_Emprestimo(models.Model):
 
 
 class SemBeneficio(models.Model):
-    descricao = models.CharField(default="Sem Benefícios Atribuidos")
+    descricao = models.CharField(max_length= 25, default="Sem Benefícios Atribuidos")
     
     
     class Meta:
@@ -147,15 +149,15 @@ class PlanoSaude(models.Model):
     plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
     installment_date = models.DateField()
     pay_installment_date = models.DateField()
-    health_plan = models.CharField(default="UNIMED")
+    health_plan = models.CharField(max_length=6, default="UNIMED")
     
     
     class Meta:
-        verbose_name_plural = "PlanoSaude"
+        verbose_name_plural = "PlanosSaude"
 
 
 class ValeRefeicao(models.Model):
-    value = models.DecimalField()
+    value = models.DecimalField(max_digits=9, decimal_places=2)
     
     
     class Meta:
@@ -163,7 +165,7 @@ class ValeRefeicao(models.Model):
 
 
 class ValeAlimentacao(models.Model):
-    value = models.DecimalField()
+    value = models.DecimalField(max_digits=9, decimal_places=2)
 
 
 class Meta:
@@ -173,7 +175,7 @@ class Meta:
 class Cliente(models.Model):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
-    age = models.PositiveSmallIntegerField(max_length = 3)
+    age = models.PositiveIntegerField()
     email = models.EmailField(max_length = 255, unique = True)
     MALE = "Masculino"
     FEMALE = "Feminino"
