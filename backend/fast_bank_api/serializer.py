@@ -2,37 +2,37 @@ from .models import *
 from rest_framework import serializers
 
 
-class UsuarioSerializer(serializers.Serializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        field = ['id', 'cpf', 'password']
+        fields = ['id', 'cpf', 'password']
         
 
-class EnderecoSerializer(serializers.Serializer):
+class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endereco
-        field = ['id', 'cep', 'road', 'house_number', 'neighborhood', 'city', 
+        fields = ['id', 'cep', 'road', 'house_number', 'neighborhood', 'city', 
                  'uf', 'country']
         
 
-class ContaSerializer(serializers.Serializer):
+class ContaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conta
-        field = ['id', 'agency', 'account_number', 'verify_digit', 'money', 
+        fields = ['id', 'agency', 'account_number', 'verify_digit', 'money', 
                  'class_account', 'account_type']
    
 
-class TransferenciaSerializer(serializers.Serializer):
+class TransferenciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transferencia
-        field = ['id', 'transfer_date', 'operation_type', 'value', 
+        fields = ['id', 'transfer_date', 'operation_type', 'value', 
                  'sending_account', 'recive_account']
 
 
-class EmprestimoSerializer(serializers.Serializer):
+class EmprestimoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Emprestimo
-        field = ['id', 'loan_status','loan_date', 'loan_first_installment_date', 
+        fields = ['id', 'loan_status','loan_date', 'loan_first_installment_date', 
                  'loan_value', 'number_installment', 'number_pay_installment',
                  'fees', 'loan_value_payment', 'total_value']
     
@@ -58,26 +58,26 @@ class EmprestimoSerializer(serializers.Serializer):
     total_value = serializers.SerializerMethodField(method_name='calc_total_loan_payment')
 
 
-class PGTO_EmprestimoSerializer(serializers.Serializer):
+class PGTO_EmprestimoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PGTO_Emprestimo
-        field = ['id', 'date_payment','loan']
+        fields = ['id', 'date_payment','loan']
 
 
-class SemBeneficioSerializer(serializers.Serializer):
+class SemBeneficioSerializer(serializers.ModelSerializer):
     
     
     class Meta:
         model = SemBeneficio
-        field = ['id', 'descricao']
+        fields = ['id', 'descricao']
         
         
-class PlanoSaudeSerializer(serializers.Serializer):
+class PlanoSaudeSerializer(serializers.ModelSerializer):
     
     
     class Meta:
         model = PlanoSaude
-        field = ['id', 'installment_value', 'plan_type', 
+        fields = ['id', 'installment_value', 'plan_type', 
                  'installment_date', 'pay_installment_date', 'health_plan']
     
     pay_installment_date = serializers.SerializerMethodField(method_name='verify_type_plan')
@@ -91,26 +91,26 @@ class PlanoSaudeSerializer(serializers.Serializer):
             return years+1
     
         
-class ValeRefeicaoSerializer(serializers.Serializer):
+class ValeRefeicaoSerializer(serializers.ModelSerializer):
     
     
     class Meta:
         model = ValeRefeicao
-        field = ['id', 'value']
+        fields = ['id', 'value']
     
         
-class ValeAlimentacaoSerializer(serializers.Serializer):
+class ValeAlimentacaoSerializer(serializers.ModelSerializer):
     
     
     class Meta:
         model = ValeAlimentacao
-        field = ['id', 'value']
+        fields = ['id', 'value']
         
 
-class BeneficioSerializer(serializers.Serializer):
+class BeneficioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beneficio
-        field = ['id', 'nome', 'client']
+        fields = ['id', 'nome', 'client']
     
     detail = serializers.SerializerMethodField(method_name='verify_benefit')
     
@@ -129,21 +129,21 @@ class BeneficioSerializer(serializers.Serializer):
             return type
 
 
-class ClienteSerializer(serializers.Serializer):
+class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        field = ['id', 'last_name', 'first_name', 'age', 'email', 
+        fields = ['id', 'last_name', 'first_name', 'age', 'email', 
                  'sex_choice', 'user', 'address', 'account']
 
 
-class CartaoSerializer(serializers.Serializer):
+class CartaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cartao
-        field = ['id', 'number', 'security_number', 'validate_date', 
+        fields = ['id', 'number', 'security_number', 'validate_date', 
                  'email', 'client']
 
 
-class FaturaSerializer(serializers.Serializer):
+class FaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fatura
         field = ['id', 'emission_date', 'validate_date', 'value', 

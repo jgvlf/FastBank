@@ -118,7 +118,7 @@ class Emprestimo(models.Model):
 
 class PGTO_Emprestimo(models.Model):
     date_payment = models.DateField(null=True)
-    loan = models.ForeignKey(
+    loan = models.OneToOneField(
         Emprestimo,
         on_delete = models.PROTECT
     )
@@ -188,9 +188,9 @@ class Cliente(models.Model):
     
     sex_choice = models.CharField(max_length = 1, choices = SEX_CHOICES, default = MALE)
     
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         Usuario,
-        on_delete = models.CASCADE  
+        on_delete = models.CASCADE,  
     )
     
     address = models.ForeignKey(
@@ -198,9 +198,9 @@ class Cliente(models.Model):
         on_delete = models.CASCADE
     )
     
-    account = models.ForeignKey(
+    account = models.OneToOneField(
         Conta,
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
     )
     
     def __str__(self):
@@ -238,7 +238,7 @@ class Cartao(models.Model):
     number = models.CharField(max_length= 255)
     security_number = models.CharField(max_length= 255)
     validate_date = models.CharField(max_length= 5)
-    client = models.ForeignKey(
+    client = models.OneToOneField(
         Cliente,
         on_delete = models.PROTECT
     )
@@ -263,7 +263,7 @@ class Fatura(models.Model):
         ("PR", DENY_PAYMENT),
     ]
     status = models.CharField(max_length = 3, choices = STATUS_TYPE, default = WAIT_PAYMENT)
-    card = models.ForeignKey(
+    card = models.OneToOneField(
         Cartao,
         on_delete = models.PROTECT
     )
