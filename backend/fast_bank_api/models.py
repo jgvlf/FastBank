@@ -136,6 +136,9 @@ class SemBeneficio(models.Model):
     
     class Meta:
         verbose_name_plural = "SemBeneficios"
+    
+    def __str__(self):
+        return self.descricao
 
 
 class PlanoSaude(models.Model):
@@ -151,6 +154,8 @@ class PlanoSaude(models.Model):
     pay_installment_date = models.DateField()
     health_plan = models.CharField(max_length=6, default="UNIMED")
     
+    def __str__(self):
+        return str(self.pay_installment_date)
     
     class Meta:
         verbose_name_plural = "PlanosSaude"
@@ -159,6 +164,8 @@ class PlanoSaude(models.Model):
 class ValeRefeicao(models.Model):
     value = models.DecimalField(max_digits=9, decimal_places=2)
     
+    def __str__(self):
+        return str(self.value)
     
     class Meta:
         verbose_name_plural = "ValeRefeicoes"
@@ -167,6 +174,8 @@ class ValeRefeicao(models.Model):
 class ValeAlimentacao(models.Model):
     value = models.DecimalField(max_digits=9, decimal_places=2)
 
+    def __str__(self):
+        return str(self.value)
 
     class Meta:
             verbose_name_plural = "ValeAlimentacoes"
@@ -243,6 +252,8 @@ class Cartao(models.Model):
         on_delete = models.PROTECT
     )
     
+    def __str__(self):
+        return self.number
     
     class Meta:
         verbose_name_plural = "Cartoes"
