@@ -133,7 +133,7 @@ class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
         fields = ['id', 'last_name', 'first_name', 'age', 'email', 
-                 'sex_choice', 'user', 'address', 'account']
+                 'sex_choice', 'user', 'adress', 'account']
 
 
 class CartaoSerializer(serializers.ModelSerializer):

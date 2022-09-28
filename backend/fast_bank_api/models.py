@@ -23,7 +23,7 @@ class Endereco(models.Model):
     cep = models.CharField(max_length = 8)
     
     def __str__(self):
-        return self.id
+        return str(self.road)
     
     
     class Meta:
@@ -31,8 +31,8 @@ class Endereco(models.Model):
         
 
 class Conta(models.Model):
-    agency = models.CharField(max_length = 255)
-    account_number = models.CharField(max_length = 255, unique=True)
+    agency = models.CharField(max_length = 5)
+    account_number = models.CharField(max_length = 7, unique=True)
     verify_digit = models.CharField(max_length = 1)
     money = models.DecimalField(max_digits=9, decimal_places=2)
     BRONZE = "Bronze"
@@ -193,7 +193,7 @@ class Cliente(models.Model):
         on_delete = models.CASCADE,  
     )
     
-    address = models.ForeignKey(
+    adress = models.ForeignKey(
         Endereco,
         on_delete = models.CASCADE
     )
