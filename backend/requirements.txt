@@ -2,6 +2,7 @@ asgiref==3.5.2
 certifi==2022.6.15
 distlib==0.3.5
 Django==4.1
+django-cors-headers==3.13.0
 django-filter==22.1
 django-pictures==1.0rc2
 djangorestframework==3.13.1
