@@ -4,7 +4,7 @@ import App from './App'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <div className='font_default'>
     <App />
-  </React.StrictMode>
+  </div>
 )

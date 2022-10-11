@@ -6,3 +6,9 @@
   margin: 0;
   padding: 0;
 }
+
+.font_default{
+  font-family: 'NATS';
+  color: white;
+  font-weight: normal;  
+}

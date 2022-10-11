@@ -6,10 +6,10 @@ class Header extends Component {
     render() { 
         return (
         <>
-                <div className="px-[25px] justify-between flex h-[70px] w-screen fixed top-0 bg-[#002855] tablet:w-screen tablet:h-[100px] ">
-                    <a href="#"><img className="w-[70px] h-[70px] tablet:w-[100px] tablet:h-[100px]" src={logo} alt="FastBank" /></a>
+                <div className="z-[1000] px-[25px] justify-between flex h-[70px] w-screen fixed top-0 bg-[#002855] tablet:w-screen tablet:h-[100px] ">
+                    <a href="#"><img className="h-[70px] tablet:w-[100px] tablet:h-[100px]" src={logo} alt="FastBank" /></a>
                     <div className="items-center w-[70px] h-[70px] flex tablet:hidden">
-                        <a href=""><img className=" w-[50px] h-[50px]" src={HM} alt="Menu" /></a>
+                        <a href=""><img className="w-[50px] h-[50px]" src={HM} alt="Menu" /></a>
                     </div>
                     <ul className=" hidden tablet:flex tablet:items-center tablet:w-[80%] justify-around">
                         <div>

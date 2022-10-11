@@ -26,7 +26,12 @@ module.exports = {
       // => @media (min-width: 1920px) { ... }
 
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'fast-effect': "url('./src/assets/img/fast_effect_001.png')",
+        'thunder-effect': "url('./src/assets/img/thunder_effect_001.png')",
+      },
+    },
   },
   plugins: [],
 }

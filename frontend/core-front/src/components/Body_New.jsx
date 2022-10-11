@@ -17,10 +17,10 @@ function Body() {
     }, [])
 
     return ( 
-        <div className="mt-[70px] w-screen h-auto bg-[#023E7D] mobileS:h-screen default:w-screen default:h-screen default:mt-[100px]">
-            <div className="inline-block w-screen h-[243px]">
-                <img className="absolute w-screen h-[243px] bg-cover z-0 default:h-full" src={FastEffectImg} alt="" />
-                <img className="relative w-screen h-[243px] bg-cover z-[900] scale-x-[-1] default:h-screen" src={ThunderEffectImg} alt="" />
+        <div className="mt-[70px] w-screen bg-[#023E7D] mobileS:h-screen default:w-screen default:h-screen default:mt-[100px]">
+            <div className="inline-block w-screen">
+                <div className="absolute fast-effect"></div>
+                <div className="relative bg-[url('../assets/img/thunder_effect_001.png')]"></div>
             </div>
             {clients.map((client)=>
             <div className="px-[20px] pt[10px]" key={client.id}>
