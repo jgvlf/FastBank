@@ -9,17 +9,20 @@
         "MyGit":{
             "source": "Git Bash",
             "icon": "github",
-            "color": "terminal.ansiRed"
+            "color": "terminal.ansiRed",
+			
         },
         "Package Installer":{
             "source": "PowerShell",
             "icon": "package",
-            "color": "terminal.ansiGreen"
+            "color": "terminal.ansiGreen",
+			
         },
         "Server":{
             "source": "PowerShell",
             "icon": "server",
-            "color": "terminal.ansiBlue"
+            "color": "terminal.ansiBlue",
+			"path": "${workspaceFolder}",
         },
     },
 	"restoreTerminals.terminals": [
@@ -28,6 +31,7 @@
 			"splitTerminals":[
 				{
 					"name": "Git",
+					"path": "${workspaceFolder}",
 				},
 
 			]
@@ -36,7 +40,8 @@
 			"profile": "Package Installer",
 			"splitTerminals": [
 				{
-					"name": "Node"
+					"name": "Node",
+					"path": "${workspaceFolder}/frontend/core-front/",
 				},
 			]
 		},
@@ -44,7 +49,8 @@
 			"profile": "Package Installer",
 			"splitTerminals": [
 				{
-					"name": "Python"
+					"name": "Python",
+					"path": "${workspaceFolder}/backend/",
 				},
 			]
 		},
@@ -52,7 +58,8 @@
 			"profile": "Server",
 			"splitTerminals": [
 				{
-					"name": "React"
+					"name": "React",
+					"path": "${workspaceFolder}/frontend/core-front/",
 				},
 			]
 		},
@@ -60,7 +67,8 @@
 			"profile": "Server",
 			"splitTerminals": [
 				{
-					"name": "Django"
+					"name": "Django",
+					"path": "${workspaceFolder}/backend/",
 				},
 			]
 		},

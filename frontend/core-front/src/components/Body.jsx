@@ -1,45 +1,29 @@
-import React, {Component} from "react";
+import React, { useEffect, useState} from "react";
+import axios from 'axios';
 
 
-class Body extends Component {
-    constructor(){
-        super();
-        this.state={
-            data:[]
-        };
+function Body() {
+    const [clients, setClients] = useState([]);
+
+    const fetchData = async () => {
+        const {data} = await axios.get('http://127.0.0.1:8000/api/clientes/')
+        setClients(data);
     }
 
-        async fetchData(){
-            await fetch('http://127.0.0.1:8000/api/clientes/')
-            .then(response=>response.json())
-            .then((data)=>{
-                this.setState({
-                    data:data
-                });
-            });
-        }
+    useEffect(()=>{
+        fetchData();
+    }, [])
 
-    componentDidMount(){
-        this.fetchData();
-    }
-     
-    render() {
-        const empData = this.state.data;
-        const rows = empData.map((emp)=>
-            <div key={1}>
-                <h1>{emp.last_name}</h1>
-                <h1>{emp.first_name}</h1>
+    return ( 
+        <div className=" mt-[70px] w-screen h-full bg-[#023E7D] mobileS:h-screen default:w-screen default:h-screen">
+            {clients.map((client)=>
+            <div key={client.id}>
+                <h1>{client.last_name}</h1>
+                <h1>{client.first_name}</h1>
             </div>
-        );  
-        return (
-            <>
-                <div className=" mt-[70px] w-screen h-full bg-[#023E7D] mobileS:h-screen default:w-screen default:h-screen">
-                    {rows}
-                </div>
-
-            </>
-        );
-    }
+            )}
+        </div>
+     );
 }
- 
+
 export default Body;
