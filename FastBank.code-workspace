@@ -31,7 +31,6 @@
 			"splitTerminals":[
 				{
 					"name": "Git",
-					"path": "${workspaceFolder}",
 				},
 
 			]
@@ -41,7 +40,6 @@
 			"splitTerminals": [
 				{
 					"name": "Node",
-					"path": "${workspaceFolder}/frontend/core-front/",
 				},
 			]
 		},
@@ -50,7 +48,6 @@
 			"splitTerminals": [
 				{
 					"name": "Python",
-					"path": "${workspaceFolder}/backend/",
 				},
 			]
 		},
@@ -59,7 +56,6 @@
 			"splitTerminals": [
 				{
 					"name": "React",
-					"path": "${workspaceFolder}/frontend/core-front/",
 				},
 			]
 		},
@@ -68,7 +64,6 @@
 			"splitTerminals": [
 				{
 					"name": "Django",
-					"path": "${workspaceFolder}/backend/",
 				},
 			]
 		},
