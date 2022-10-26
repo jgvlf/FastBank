@@ -22,7 +22,6 @@
             "source": "PowerShell",
             "icon": "server",
             "color": "terminal.ansiBlue",
-			"path": "${workspaceFolder}",
         },
     },
 	"restoreTerminals.terminals": [
