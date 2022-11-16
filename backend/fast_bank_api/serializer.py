@@ -28,7 +28,6 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         fields = ['id', 'transfer_date', 'operation_type', 'value', 
                  'sending_account', 'recive_account']
 
-
 class EmprestimoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Emprestimo
