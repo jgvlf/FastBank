@@ -1,2 +1,3 @@
 .venv/
 core/__pycache__/
+fast_bank_api/migrations/__pycache__/
