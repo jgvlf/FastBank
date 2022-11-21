@@ -151,7 +151,7 @@ class PlanoSaude(models.Model):
     ]
     plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
     installment_date = models.DateField()
-    pay_installment_date = models.DateField()
+    pay_installment_date = models.DateField(blank=True, null=True)
     health_plan = models.CharField(max_length=6, default="UNIMED")
     
     def __str__(self):
