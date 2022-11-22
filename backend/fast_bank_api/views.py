@@ -86,54 +86,6 @@ class PlanoSaudeViewSets(viewsets.ModelViewSet):
     queryset = PlanoSaude.objects.all()
     serializer_class = PlanoSaudeSerializer
     
-    def create(self, request, *args, **kwargs):
-        from datetime import datetime
-        pl = PlanoSaude()
-        if pl.plan_type == "M":
-            pl_m = PlanoSaude()
-            todayMonth = datetime.today().month
-            if(todayMonth == int(self.request.data['installment_date'])):
-                pl_m.pay_installment_date = pl_m.installment_date + relativedelta.relativedelta(months=1)
-            else:
-                pl_m.pay_installment_date = pl_m.installment_date
-                
-            pl_m_atualizar = {
-                "installment_value": pl_m.installment_value,
-                "plan_type": pl_m.plan_type,
-                "installment_date": pl_m.installment_date,
-                "pay_installment_date": pl_m.pay_installment_date,
-                "health_plan": pl_m.health_plan
-                }
-            serializers_pl_m = PlanoSaudeSerializer(pl_m, data=pl_m_atualizar)
-            if serializers_pl_m.is_valid():
-                serializers_pl_m.save()
-            else:
-                print(serializers_pl_m.errors) 
-        if pl.plan_type == "A":
-            pl_a = PlanoSaude()
-            todayYear = datetime.today().year
-            if(todayYear == int(self.request.data['installment_date'])):
-                pl_a.pay_installment_date = pl_a.installment_date + relativedelta.relativedelta(years=1)
-                
-            else:
-                pl_a.pay_installment_date = pl_a.installment_date
-            
-            pl_a_atualizar = {
-                "installment_value": pl_a.installment_value,
-                "plan_type": pl_a.plan_type,
-                "installment_date": pl_a.installment_date,
-                "pay_installment_date": pl_a.pay_installment_date,
-                "health_plan": pl_a.health_plan
-                }
-                
-            serializers_pl_a = PlanoSaudeSerializer(pl_a, data=pl_a_atualizar)
-            if serializers_pl_a.is_valid():
-                serializers_pl_a.save()
-            else:
-                print(serializers_pl_a.errors) 
-               
-        return super().create(request, *args, **kwargs)
-
 class ValeRefeicaoViewSets(viewsets.ModelViewSet):
     queryset = ValeRefeicao.objects.all()
     serializer_class = ValeRefeicaoSerializer

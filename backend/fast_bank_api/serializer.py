@@ -79,6 +79,29 @@ class PlanoSaudeSerializer(serializers.ModelSerializer):
         fields = ['id', 'installment_value', 'plan_type', 
                  'installment_date', 'pay_installment_date', 'health_plan']
         
+    def verify_next_payment(self, data):
+        from datetime import datetime
+        from dateutil import relativedelta
+        if data.plan_type == 'M':
+            today = datetime.today().date()
+            if(today == data.installment_date):
+                self.next_data = data.installment_date + relativedelta.relativedelta(months=1)
+                return self.next_data
+            else:
+                self.next_data = data.installment_date
+                return self.next_data
+        
+        if data.plan_type == 'A':
+            today = datetime.today().date()
+            if(today == data.installment_date):
+                self.next_data = data.installment_date + relativedelta.relativedelta(years=1)
+                return self.next_data
+            else:
+                self.next_data = data.installment_date
+                return self.next_data
+                
+    pay_installment_date = serializers.SerializerMethodField(method_name='verify_next_payment')
+       
 class ValeRefeicaoSerializer(serializers.ModelSerializer):
     
     
