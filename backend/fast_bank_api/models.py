@@ -130,57 +130,6 @@ class PGTO_Emprestimo(models.Model):
         verbose_name_plural = "PGTOS_Emprestimos"
 
 
-class SemBeneficio(models.Model):
-    descricao = models.CharField(max_length= 25, default="Sem Benefícios Atribuidos")
-    
-    
-    class Meta:
-        verbose_name_plural = "SemBeneficios"
-    
-    def __str__(self):
-        return self.descricao
-
-
-class PlanoSaude(models.Model):
-    installment_value = models.DecimalField(max_digits = 6, decimal_places= 2)
-    ANNUAL = "ANNUAL"
-    MONTHLY = "MONTHLY"
-    PLAN_TYPE = [
-        ("M", MONTHLY),
-        ("A", ANNUAL),
-    ]
-    plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
-    installment_date = models.DateField()
-    pay_installment_date = models.DateField(null=True)
-    health_plan = models.CharField(max_length=6, default="UNIMED")
-    
-    def __str__(self):
-        return str(self.pay_installment_date)
-    
-    class Meta:
-        verbose_name_plural = "PlanosSaude"
-
-
-class ValeRefeicao(models.Model):
-    value = models.DecimalField(max_digits=9, decimal_places=2)
-    
-    def __str__(self):
-        return str(self.value)
-    
-    class Meta:
-        verbose_name_plural = "ValeRefeicoes"
-
-
-class ValeAlimentacao(models.Model):
-    value = models.DecimalField(max_digits=9, decimal_places=2)
-
-    def __str__(self):
-        return str(self.value)
-
-    class Meta:
-            verbose_name_plural = "ValeAlimentacoes"
-      
-      
 class Cliente(models.Model):
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
@@ -218,7 +167,74 @@ class Cliente(models.Model):
     
     class Meta:
         verbose_name_plural = "Clientes"
+
+class SemBeneficio(models.Model):
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+    descricao = models.CharField(max_length= 25, default="Sem Benefícios Atribuidos")
     
+    
+    class Meta:
+        verbose_name_plural = "SemBeneficios"
+    
+    def __str__(self):
+        return self.descricao
+
+
+class PlanoSaude(models.Model):
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+    installment_value = models.DecimalField(max_digits = 6, decimal_places= 2)
+    ANNUAL = "ANNUAL"
+    MONTHLY = "MONTHLY"
+    PLAN_TYPE = [
+        ("M", MONTHLY),
+        ("A", ANNUAL),
+    ]
+    plan_type = models.CharField(max_length = 1, choices = PLAN_TYPE, default = MONTHLY)
+    installment_date = models.DateField()
+    pay_installment_date = models.DateField(null=True)
+    health_plan = models.CharField(max_length=6, default="UNIMED")
+    
+    def __str__(self):
+        return str(self.pay_installment_date)
+    
+    class Meta:
+        verbose_name_plural = "PlanosSaude"
+    
+
+class ValeRefeicao(models.Model):
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+    value = models.DecimalField(max_digits=9, decimal_places=2)
+    
+    def __str__(self):
+        return str(self.value)
+    
+    class Meta:
+        verbose_name_plural = "ValeRefeicoes"
+
+
+      
+    
+class ValeAlimentacao(models.Model):
+    client = models.ForeignKey(
+        Cliente,
+        on_delete = models.PROTECT
+    )
+    value = models.DecimalField(max_digits=9, decimal_places=2)
+
+    def __str__(self):
+        return str(self.value)
+
+    class Meta:
+            verbose_name_plural = "ValeAlimentacoes"
     
 class Beneficio(models.Model):
     NO_BENEFIT = "Sem Benefício"
@@ -236,7 +252,6 @@ class Beneficio(models.Model):
         Cliente,
         on_delete = models.PROTECT
     )
-
     
     def __str__(self):
         return self.nome
@@ -260,8 +275,8 @@ class Cartao(models.Model):
     
     
 class Fatura(models.Model):
-    emission_date = models.DateTimeField()
-    validate_date = models.DateTimeField()
+    emission_date = models.DateField()
+    validate_date = models.DateField()
     value = models.DecimalField(max_digits = 9, decimal_places = 2)
     WAIT_PAYMENT = "Aguardando Pagamento"
     ANALYSING_PAYMENT = "Analisando Pagamento"

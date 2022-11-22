@@ -68,7 +68,7 @@ class SemBeneficioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = SemBeneficio
-        fields = ['id', 'descricao']
+        fields = ['id', 'client', 'descricao']
         
         
 class PlanoSaudeSerializer(serializers.ModelSerializer):
@@ -76,7 +76,7 @@ class PlanoSaudeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = PlanoSaude
-        fields = ['id', 'installment_value', 'plan_type', 
+        fields = ['id', 'client', 'installment_value', 'plan_type', 
                  'installment_date', 'pay_installment_date', 'health_plan']
         
     def verify_next_payment(self, data):
@@ -107,7 +107,7 @@ class ValeRefeicaoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ValeRefeicao
-        fields = ['id', 'value']
+        fields = ['id', 'client', 'value']
     
         
 class ValeAlimentacaoSerializer(serializers.ModelSerializer):
@@ -115,30 +115,13 @@ class ValeAlimentacaoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ValeAlimentacao
-        fields = ['id', 'value']
+        fields = ['id', 'client', 'value']
         
 
 class BeneficioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beneficio
         fields = ['id', 'nome', 'client']
-    
-    detail = serializers.SerializerMethodField(method_name='verify_benefit')
-    
-    def verify_benefit(self):
-        if self.nome == "SB":
-            type = SemBeneficio
-            return type
-        if self.nome == "PS":
-            type = PlanoSaude
-            return type
-        if self.nome == "VR":
-            type = ValeRefeicao
-            return type
-        if self.nome == "VA":
-            type = ValeAlimentacao
-            return type
-
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -151,13 +134,13 @@ class CartaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cartao
         fields = ['id', 'number', 'security_number', 'validate_date', 
-                 'email', 'client']
+                'client']
 
 
 class FaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fatura
-        field = ['id', 'emission_date', 'validate_date', 'value', 
+        fields = ['id', 'emission_date', 'validate_date', 'value', 
                  'status', 'card']
 
     

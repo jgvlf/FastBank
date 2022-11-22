@@ -81,6 +81,7 @@ class PGTO_EmprestimoViewSets(viewsets.ModelViewSet):
 class SemBeneficioViewSets(viewsets.ModelViewSet):
     queryset = SemBeneficio.objects.all()
     serializer_class = SemBeneficioSerializer
+    
 
 class PlanoSaudeViewSets(viewsets.ModelViewSet):
     queryset = PlanoSaude.objects.all()
@@ -97,7 +98,6 @@ class ValeAlimentacaoViewSets(viewsets.ModelViewSet):
 class BeneficioViewSets(viewsets.ModelViewSet):
     queryset = Beneficio.objects.all()
     serializer_class = BeneficioSerializer
-
 class CartaoViewSets(viewsets.ModelViewSet):
     queryset = Cartao.objects.all()
     serializer_class = CartaoSerializer
