@@ -23,11 +23,6 @@ function Body() {
                     default:w-full default:h-screen default:bg-cover default:bg-[top_right_-300px]">
                     </div>
                 
-                {/* <div style={{backgroundImage: '../assets/img/fast_effect_001.png'}} className="">
-
-                </div> */}
-                {/* <img className="absolute w-screen h-[243px] bg-cover z-0 default:h-full" src={FastEffectImg} alt="" />
-                <img className="relative w-screen h-[243px] bg-cover z-[900] scale-x-[-1] default:h-screen" src={ThunderEffectImg} alt="" /> */}
                 </div>
             {clients.map((client)=>
             <div className="px-[20px] pt[10px]" key={client.id}>
