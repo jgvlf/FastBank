@@ -1,6 +1,6 @@
 import React, {Component, useState} from "react";
-import logo from "../assets/img/Logo.png";
-import HM from "../assets/img/hamburger_menu.svg"
+import logo from "../../assets/img/Logo.png";
+import HM from "../../assets/img/hamburger_menu.svg"
 
 function Header(){
     const [active, setActive] = useState(false);
