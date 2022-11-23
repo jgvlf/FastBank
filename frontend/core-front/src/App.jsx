@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import Home from './pages/Home';
+import { router } from './routers/MyRoutes';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
 
   return (
-    <Home />
+    <RouterProvider router={router()}/>
   )
 }
 
-export default App
+export default App;

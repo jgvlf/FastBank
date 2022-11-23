@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import axios from 'axios';
-import FastEffectImg from '../../assets/img/fast_effect_001.png';
-import ThunderEffectImg from '../../assets/img/thunder_effect_001_inverted.png';
+import FastEffectImg from '../../../assets/img/fast_effect_001.png';
+import ThunderEffectImg from '../../../assets/img/thunder_effect_001_inverted.png';
 
 
 function Body() {

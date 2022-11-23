@@ -5,6 +5,6 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className='font_default'>
-    <App />
+    <App/>
   </div>
 )
