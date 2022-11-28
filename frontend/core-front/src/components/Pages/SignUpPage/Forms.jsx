@@ -4,7 +4,7 @@ export function Forms(props){
     return(
         <div className="flex w-full h-full items-center justify-center">
             <div className="w-[250px] h-auto bg-white border-2 rounded-[20px] border-transparent">
-            <h1 className="text-black flex justify-center">Login</h1>
+            <h1 className="text-black flex justify-center">SignUp</h1>
                 <div className="flex w-full h-full items-center justify-center">
                     <form id="login" method="post">
                         <label htmlFor="flcpf" className="text-black">CPF:</label><br />

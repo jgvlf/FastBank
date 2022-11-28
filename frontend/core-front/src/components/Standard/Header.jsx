@@ -35,6 +35,9 @@ export function Header(){
                         <ul>
                             <a href="/login"><li>Login</li></a>
                         </ul>
+                        <ul>
+                            <a href="/signup"><li>Signup</li></a>
+                        </ul>
                     </div>
                 </div>
             </>

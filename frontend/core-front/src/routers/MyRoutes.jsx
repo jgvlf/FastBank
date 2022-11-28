@@ -1,6 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
 import { SignInPage } from '../pages/SignInPage';
+import {SignUpPage} from '../pages/SignUpPage'
 
 export function router(){
     return(
@@ -12,6 +13,10 @@ export function router(){
             {
                 path:"/login",
                 element: <SignInPage/>
+            },
+            {
+                path:"/signup",
+                element: <SignUpPage/>
             },
         ])
     )
