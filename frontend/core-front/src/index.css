@@ -7,8 +7,13 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: NATS;
+  src: url(assets/font/NATS-Regular.ttf);
+}
+
 .font_default{
-  font-family: 'NATS';
+  font-family: NATS;
   color: white;
   font-weight: normal;  
 }

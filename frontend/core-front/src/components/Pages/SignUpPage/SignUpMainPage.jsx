@@ -5,7 +5,6 @@ import { Forms } from "./Forms";
 export function SignUpMainPage(){
     return(
         <BackGround>
-            <h1>SignUp</h1>
             <Forms/>
         </BackGround>
     )
