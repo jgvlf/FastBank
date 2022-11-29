@@ -25,6 +25,8 @@ export const AuthProvider = ({children}) => {
   }, []);
 
   const login = async (cpf, password) => {
+    console.log(cpf)
+    console.log(password)
 
     const res = await logar(""+cpf, ""+password);
 
@@ -33,7 +35,7 @@ export const AuthProvider = ({children}) => {
     const loggedUser = {'cpf':response.cpf, 'password':response.password};
     const token = response.token; 
 
-    localStorage.setItem("user", loggedUser);
+    localStorage.setItem("user", JSON.stringify(loggedUser));
     localStorage.setItem("token", token);
 
     setUser(loggedUser);
@@ -59,8 +61,9 @@ export const AuthProvider = ({children}) => {
   
       const response = res.status;
       
-      if(response === 200){
+      if(response === 201){
         alert("Conta cadastrada com sucesso!");
+        navigate('/login');
       
       }else{
         alert("Error status: "+response)

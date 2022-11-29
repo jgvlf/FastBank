@@ -9,11 +9,12 @@
 
 @font-face {
   font-family: NATS;
-  src: url(assets/font/NATS-Regular.ttf);
+  src: url(./assets/font/NATS-Regular.ttf);
 }
 
 .font_default{
   font-family: NATS;
   color: white;
   font-weight: normal;  
+  font-size: larger;
 }

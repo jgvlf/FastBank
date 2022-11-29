@@ -38,9 +38,7 @@ export function Routers(){
                     <Route exact path='/login' element={<SignInPage/>}/>
                     <Route exact path='/signup' element={<SignUpPage/>}/>
                     <Route exact path='/' element={
-                        <Private>
                             <HomePage/>
-                        </Private>
                     }/>
                 </Routes>
             </AuthProvider>
