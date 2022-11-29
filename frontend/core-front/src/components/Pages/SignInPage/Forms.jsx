@@ -33,6 +33,8 @@ export const Forms = ()=>{
                         <input type="password" name="fpassword" id="fpassword" className="text-black border-2 rounded border-black" onChange={(event)=>setPassword(event.target.value)}/>
                         <div className="my-[20px] flex justify-center border-2 rounded border-black">
                             <button className="w-[168px] h-[30px] text-black" type="submit" form="login">Login</button>
+                        </div>
+                        <div className="my-[20px] flex justify-center border-2 rounded border-black">
                             <button className="w-[168px] h-[30px] text-black" type="button" form="login" onClick={handleClick}>Click here to SignUp</button>
                         </div>
                     </form>
