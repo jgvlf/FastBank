@@ -1,25 +1,61 @@
-import { createBrowserRouter, BrowserRouter as Router, Route, Routes, Navigate, } from 'react-router-dom';
+import React, { useContext } from 'react';
+
+import { createBrowserRouter, BrowserRouter as Router, 
+    Route,
+    Routes, 
+    Navigate, 
+} from 'react-router-dom';
+
 import { HomePage } from '../pages/HomePage';
 import { SignInPage } from '../pages/SignInPage';
 import { SignUpPage } from '../pages/SignUpPage';
 import { AuthProvider, AuthContext } from '../context/auth';
 
+const Private = ({children}) => {
+  
+    const { loading } = useContext(AuthContext);
 
-export function router(){
+    if(loading){
+      return <div className='loading'>Carregando...</div>
+    }
+
+    const { authenticated } = useContext(AuthContext);
+
+    if(!authenticated){
+      return <Navigate to='/login' />
+    }
+
+    return children;
+
+  };
+
+
+export function Routers(){
     return(
-        createBrowserRouter([
-            {
-                path:"/",
-                element: <HomePage/>
-            },
-            {
-                path:"/login",
-                element: <SignInPage/>
-            },
-            {
-                path:"/signup",
-                element: <SignUpPage/>
-            },
-        ])
+        <Router>
+            <AuthProvider>
+                <Routes>
+                    <Route exact path='/login' element={<SignInPage/>}/>
+                    <Route exact path='/signup' element={<SignUpPage/>}/>
+                    <Route exact path='/' element={
+                            <HomePage/>
+                    }/>
+                </Routes>
+            </AuthProvider>
+        </Router>
+        // createBrowserRouter([
+        //     {
+        //         path:"/",
+        //         element: <HomePage/>
+        //     },
+        //     {s
+        //         path:"/login",
+        //         element: <SignInPage/>
+        //     },
+        //     {
+        //         path:"/signup",
+        //         element: <SignUpPage/>
+        //     },
+        // ])
     )
 }

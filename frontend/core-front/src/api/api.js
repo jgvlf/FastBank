@@ -6,9 +6,9 @@ export const api = axios.create({
 
 export const createUser = async(cpf, password) =>{
     let dados = {'cpf':cpf, 'password':password}
-    return api.post('/usuarios/', dados)
+    return api.post('usuarios/', dados)
 }
 
 export const logar = async(cpf, password) => {
-    return api.get("/usuarios/" + cpf, { cpf, password } );
+    return api.get("usuarios/" + cpf, { cpf, password } );
   };

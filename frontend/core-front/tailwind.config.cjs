@@ -24,6 +24,9 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
 
     },
+    fontFamily: {
+      'NATS':['NATS'],
+    },
     extend: {
       backgroundImage: {
         'fast-effect': "url('./src/assets/img/fast_effect_001.png')",
